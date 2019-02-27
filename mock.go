@@ -1,5 +1,7 @@
 package randomock
 
+// Policy configures the policy that RandoMock objects adhere to when they are called more times than they have return
+// values.
 type Policy int
 
 const (
@@ -24,6 +26,7 @@ func (err OutOfBound) Error() string {
 	return "more calls to randomock than return values"
 }
 
+// OutOfBoundsError error is the error value returned when the policy is broken
 var OutOfBoundsError = OutOfBound{}
 
 // SetDefaultPolicy sets the default policy of all RandoMock instances going forward.
@@ -58,9 +61,9 @@ func (r *results) Get() float64 {
 		v := r.values[r.count]
 		r.count++
 		return v
-	} else {
-		return r.values[0]
 	}
+
+	return r.values[0]
 }
 
 // RandoMock is a mock of Random which keeps track of the return values for each key. Use this in your tests.
@@ -100,50 +103,62 @@ func (r *RandoMock) Policy(key string) Policy {
 
 // rand functions:
 
+// ExpFloat64 is a mocked version of rand.ExpFloat64
 func (r *RandoMock) ExpFloat64(key string) float64 {
 	return r.ret[key].Get()
 }
 
+// Float32 is a mocked version of rand.Float32
 func (r *RandoMock) Float32(key string) float32 {
 	return float32(r.ret[key].Get())
 }
 
+// Float64 is a mocked version of rand.Float64
 func (r *RandoMock) Float64(key string) float64 {
 	return r.ret[key].Get()
 }
 
+// Int is a mocked version of rand.Int
 func (r *RandoMock) Int(key string) int {
 	return int(r.ret[key].Get())
 }
 
+// Int31 is a mocked version of rand.Int31
 func (r *RandoMock) Int31(key string) int32 {
 	return int32(r.ret[key].Get())
 }
 
+// Int31n is a mocked version of rand.Int31n
 func (r *RandoMock) Int31n(key string, n int32) int32 {
 	return int32(r.ret[key].Get())
 }
 
+// Int63 is a mocked version of rand.Int63
 func (r *RandoMock) Int63(key string) int64 {
 	return int64(r.ret[key].Get())
 }
 
+// Int63n is a mocked version of rand.Int63n
 func (r *RandoMock) Int63n(key string, n int64) int64 {
 	return int64(r.ret[key].Get())
 }
 
+// Intn is a mocked version of rand.Intn
 func (r *RandoMock) Intn(key string, n int) int {
 	return int(r.ret[key].Get())
 }
 
+// NormFloat64 is a mocked version of rand.NormFloat64
 func (r *RandoMock) NormFloat64(key string) float64 {
 	return r.ret[key].Get()
 }
 
+// Uint32 is a mocked version of rand.Uint32
 func (r *RandoMock) Uint32(key string) uint32 {
 	return uint32(r.ret[key].Get())
 }
 
+// Uint64 is a mocked version of rand.Uint64
 func (r *RandoMock) Uint64(key string) uint64 {
 	return uint64(r.ret[key].Get())
 }

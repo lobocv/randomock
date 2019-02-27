@@ -253,9 +253,8 @@ func TestPolicies(t *testing.T) {
 			expectedFunc: func(count int) (float64, error) {
 				if count >= len(allExpected) {
 					return 0, OutOfBoundsError
-				} else {
-					return allExpected[count], nil
 				}
+				return allExpected[count], nil
 			},
 		},
 		{

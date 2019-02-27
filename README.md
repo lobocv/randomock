@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/lobocv/randomock)](https://goreportcard.com/report/github.com/lobocv/randomock)
+
 # Randomock
 
 Randomock is a mocking library for the standard library rand package.

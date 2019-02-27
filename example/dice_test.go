@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/lobocv/randomock"
 	"testing"
+
+	"github.com/lobocv/randomock"
 )
 
 func TestDice(t *testing.T) {
 
-	t.Run("Only One Return Value", func(t *testing.T){
+	t.Run("Only One Return Value", func(t *testing.T) {
 		// Expect the result to be 4
 		expected := 4
 		rand := randomock.NewRandoMock().Add("roll", float64(expected))
@@ -24,7 +25,7 @@ func TestDice(t *testing.T) {
 		}
 	})
 
-	t.Run("Many Different Return Values", func(t *testing.T){
+	t.Run("Many Different Return Values", func(t *testing.T) {
 		// Expect the result to be 4
 		expectedList := []float64{4, 2, 3, 1}
 		rand := randomock.NewRandoMock().Add("roll", expectedList...)
@@ -42,8 +43,7 @@ func TestDice(t *testing.T) {
 		}
 	})
 
-
-	t.Run("More calls than Return Values", func(t *testing.T){
+	t.Run("More calls than Return Values", func(t *testing.T) {
 		defer func() {
 			r := recover()
 			fmt.Printf("We got a panic, as expected! Panic: %v\n", r)
@@ -64,8 +64,7 @@ func TestDice(t *testing.T) {
 		}
 	})
 
-
-	t.Run("Different Randomock Policy", func(t *testing.T){
+	t.Run("Different Randomock Policy", func(t *testing.T) {
 		// Expect the result to be 4
 		expectedList := []float64{4, 2, 3, 1}
 		randomock.SetDefaultPolicy(randomock.WrapAroundPolicy)
@@ -75,7 +74,7 @@ func TestDice(t *testing.T) {
 
 		for roll := 0; roll < 10; roll++ {
 			result := dice.Roll()
-			expected := int(expectedList[roll % len(expectedList)]) // Note we wrap around here
+			expected := int(expectedList[roll%len(expectedList)]) // Note we wrap around here
 			if result != expected {
 				t.Fatalf("expected to roll %d, got %d", expected, result)
 			}
